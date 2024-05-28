@@ -82,7 +82,7 @@ module.exports.handleEvent = async function ({ api, event, Users }) {
 
     setTimeout(function() {
       return api.sendMessage(msg, threadID, messageID);
-    }, 200);
+    }, 50);
   }
 
   if (
