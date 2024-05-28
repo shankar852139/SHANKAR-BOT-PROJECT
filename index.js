@@ -1,5 +1,3 @@
-
-//* Don't change this code if not destroy your files and don't steal it the code (by jonell Magallanes Project CC))
 const express = require('express');
 const fs = require('fs');
 const { spawn } = require("child_process");
@@ -9,7 +7,7 @@ const axios = require("axios");
 const app = express();
 const PingMonitor = require('ping-monitor');
 const pingOptions = {
-  website: `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`,
+  website: 'https://yourwebsite.com', // Replace 'yourwebsite.com' with your actual website URL
   title: 'EDUCATIONAL BOT 4.0V',
   interval: 1 // minutes
 };
@@ -59,7 +57,7 @@ function ping(targetUrl) {
 
 
 setInterval(() => {
-  ping(`https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`);
+  ping('https://yourwebsite.com'); // Replace 'yourwebsite.com' with your actual website URL
 }, 30000); 
 const config = require('./config.json'); 
 
@@ -179,4 +177,4 @@ httpServer.listen(port, () => {
 module.exports = app;
 
 
-//Modified by Jonell Magallanes 
+//Modified by Jonell Magallanes
