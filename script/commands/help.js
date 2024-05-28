@@ -5,7 +5,7 @@ module.exports.config = {
   credits: "SHANKAR",
   description: "Beginner's Guide",
   commandCategory: "guide",
-  usePrefix: false,
+  usePrefix: true,
   usages: "[Shows Commands]",
   cooldowns: 5,
   envConfig: {
