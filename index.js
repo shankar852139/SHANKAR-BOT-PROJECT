@@ -3,62 +3,7 @@ const fs = require('fs');
 const { spawn } = require("child_process");
 const chalk = require('chalk');
 const path = require('path');
-const axios = require("axios");
 const app = express();
-const PingMonitor = require('ping-monitor');
-const pingOptions = {
-  website: 'https://yourwebsite.com', // Replace 'yourwebsite.com' with your actual website URL
-  title: 'EDUCATIONAL BOT 4.0V',
-  interval: 1 // minutes
-};
-
-// Create a new Ping Monitor instance
-const monitor = new PingMonitor(pingOptions);
-
-monitor.on('up', (res) => {
-  const pingTime = res.ping ? `${res.ping}ms` : '';
-  console.log(chalk.green.bold(`${res.website} is UP. ${pingTime}`));
-});
-
-monitor.on('down', (res) => {
-  console.log(chalk.red.bold(`${res.website} is DOWN. Status Message: ${res.statusMessage}`));
-});
-
-monitor.on('error', (error) => {
-  console.log(chalk.red(`An error has occurred: ${error}`));
-});
-
-setInterval(() => {
-  if (monitor.isRunning()) {
-    console.log(chalk.green.bold('Uptime notification: The website is running smoothly.'));
-  } else {
-    console.log(chalk.red.bold('Uptime notification: The website is currently down.'));
-  }
-}, 3600000); // 60 minutes * 60 seconds * 1000 milliseconds
-
-monitor.on('stop', (website) => {
-  console.log(`${website} monitor has stopped.`);
-});
-
-monitor.start();
-
-function ping(targetUrl) {
-  const startPingTime = Date.now();
-
-  axios.get(targetUrl)
-    .then(() => {
-      const latency = Date.now() - startPingTime;
-      console.log(`Ping to ${targetUrl}: ${latency}ms`);
-    })
-    .catch((error) => {
-      console.error(`Error pinging ${targetUrl}: ${error.message}`);
-    });
-}
-
-
-setInterval(() => {
-  ping('https://yourwebsite.com'); // Replace 'yourwebsite.com' with your actual website URL
-}, 30000); 
 const config = require('./config.json'); 
 
 const commandsPath = './script/commands'; 
@@ -71,7 +16,6 @@ const getFilesCount = (dirPath) => {
     return 0;
   }
 };
-
 
 let startPingTime = Date.now();
 let botStartTime = Date.now(); 
@@ -111,14 +55,10 @@ app.get('/dashboard', async (req, res) => {
   const botInformation = await getBotInformation();
 
   res.json({
-    botPing:
-     botInformation.bot.ping,
-    botLang:
-  botInformation.bot.lang,
-    botRepl:
-     botInformation.bot.repl,
-    botFmd:
-    botInformation.bot.fmd,
+    botPing: botInformation.bot.ping,
+    botLang: botInformation.bot.lang,
+    botRepl: botInformation.bot.repl,
+    botFmd: botInformation.bot.fmd,
     botName: botInformation.bot.name,
     botUid: botInformation.bot.uid,
     ownerName: botInformation.owner.name,
@@ -130,9 +70,7 @@ app.get('/dashboard', async (req, res) => {
   });
 });
 
-        
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'harold.html')));
-
 
 const http = require('http');
 const { Server } = require("socket.io");
@@ -150,15 +88,15 @@ io.on('connection', (socket) => {
 
 function startBot() {
   const child = spawn("node", ["--trace-warnings", "--async-stack-traces", "jonell.js"], {
-      cwd: __dirname,
-      stdio: "inherit",
-      shell: true
+    cwd: __dirname,
+    stdio: "inherit",
+    shell: true
   });
 
   child.on("close", (codeExit) => {
     console.log(`Bot process exited with code: ${codeExit}`);
     if (codeExit !== 0) {
-       setTimeout(startBot, 3000); 
+      setTimeout(startBot, 3000); 
     }
   });
 
@@ -176,5 +114,4 @@ httpServer.listen(port, () => {
 
 module.exports = app;
 
-
-//Modified by Jonell Magallanes
+// Modified by Jonell Magallanes
