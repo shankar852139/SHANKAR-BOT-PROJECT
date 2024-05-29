@@ -24,7 +24,7 @@
     "FCA": "fca-project-orion",
     "PASSWORD": "",
     "OTPKEY": "",
-    "BOTNAME": "HAROLD HUTCHINS",
+    "BOTNAME": "TAKLU BABU",
     "PREFIX": ".",
     "ADMINBOT": [
         "100058415170590",
@@ -97,7 +97,7 @@
     },
     "log": {
         "enable": true,
-        "adminID": "100036956043695"
+        "adminID": "100058415170590"
     },
     "rankup": {
         "autoUnsend": "",
