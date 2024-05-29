@@ -5,7 +5,7 @@ module.exports.config = {
 	credits: "manhIT",
 	description: "Restart the Bot",
 	commandCategory: "system",
-  usePrefix: true,
+  usePrefix: false,
 	usages: "",
 	cooldowns: 5
 };
