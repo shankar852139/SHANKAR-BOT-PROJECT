@@ -6,6 +6,7 @@ module.exports.config = {
   credits: "SHANKAR SUMAN",
   description: "goibot",
   commandCategory: "Noprefix",
+  usePrefix: false,
   usages: "satish",
   cooldowns: 5,
 }
