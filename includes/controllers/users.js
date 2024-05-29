@@ -2,57 +2,71 @@ module.exports = function ({ models, api }) {
     const Users = models.use('Users');
 
     async function getInfo(id) {
-        return (await api.getUserInfo(id))[id];
+        try {
+            const info = (await api.getUserInfo(id))[id];
+            console.log(`getInfo: Retrieved info for user ID ${id}`);
+            return info;
+        } catch (error) {
+            console.error(`getInfo: Error fetching info for user ID ${id}`, error);
+            throw error;
+        }
     }
 
     async function getNameUser(id) {
         try {
             if (global.data.userName.has(id)) {
-                console.log(`Found in global data: ${id}`);
+                console.log(`getNameUser: Found in global data: ${id}`);
                 return global.data.userName.get(id);
             } else if (global.data.allUserID.includes(id)) {
-                console.log(`Fetching from database: ${id}`);
+                console.log(`getNameUser: Fetching from database: ${id}`);
                 const userData = await this.getData(id);
                 if (userData && userData.name) {
                     global.data.userName.set(id, userData.name);  // Optionally update global data
                     return userData.name;
                 } else {
-                    console.log(`Name not found in database: ${id}`);
+                    console.log(`getNameUser: Name not found in database: ${id}`);
                     return "Facebook User";
                 }
             } else {
-                console.log(`User ID not found globally: ${id}`);
+                console.log(`getNameUser: User ID not found globally: ${id}`);
                 return "Facebook User";
             }
         } catch (error) {
-            console.error(`Error fetching name for ID ${id}:`, error);
+            console.error(`getNameUser: Error fetching name for ID ${id}:`, error);
             return "Facebook User";
         }
     }
 
     async function getAll(...data) {
-        var where, attributes;
-        for (const i of data) {
-            if (typeof i != 'object') throw global.getText("users", "needObjectOrArray");
-            if (Array.isArray(i)) attributes = i;
-            else where = i;
-        }
         try {
-            return (await Users.findAll({ where, attributes })).map(e => e.get({ plain: true }));
+            var where, attributes;
+            for (const i of data) {
+                if (typeof i != 'object') throw global.getText("users", "needObjectOrArray");
+                if (Array.isArray(i)) attributes = i;
+                else where = i;
+            }
+            const result = (await Users.findAll({ where, attributes })).map(e => e.get({ plain: true }));
+            console.log(`getAll: Retrieved all users with data: ${JSON.stringify(data)}`);
+            return result;
         } catch (error) {
-            console.error(error);
-            throw new Error(error);
+            console.error(`getAll: Error fetching all users with data ${JSON.stringify(data)}`, error);
+            throw error;
         }
     }
 
     async function getData(userID) {
         try {
             const data = await Users.findOne({ where: { userID } });
-            if (data) return data.get({ plain: true });
-            else return false;
+            if (data) {
+                console.log(`getData: Retrieved data for user ID ${userID}`);
+                return data.get({ plain: true });
+            } else {
+                console.log(`getData: No data found for user ID ${userID}`);
+                return false;
+            }
         } catch (error) {
-            console.error(error);
-            throw new Error(error);
+            console.error(`getData: Error fetching data for user ID ${userID}`, error);
+            throw error;
         }
     }
 
@@ -62,13 +76,15 @@ module.exports = function ({ models, api }) {
             const user = await Users.findOne({ where: { userID } });
             if (user) {
                 await user.update(options);
+                console.log(`setData: Updated data for user ID ${userID}`);
             } else {
                 await this.createData(userID, options);
+                console.log(`setData: Created data for user ID ${userID}`);
             }
             return true;
         } catch (error) {
-            console.error(error);
-            throw new Error(error);
+            console.error(`setData: Error setting data for user ID ${userID}`, error);
+            throw error;
         }
     }
 
@@ -77,12 +93,15 @@ module.exports = function ({ models, api }) {
             const user = await Users.findOne({ where: { userID } });
             if (user) {
                 await user.destroy();
+                console.log(`delData: Deleted data for user ID ${userID}`);
                 return true;
+            } else {
+                console.log(`delData: No data found to delete for user ID ${userID}`);
+                return false;
             }
-            return false;
         } catch (error) {
-            console.error(error);
-            throw new Error(error);
+            console.error(`delData: Error deleting data for user ID ${userID}`, error);
+            throw error;
         }
     }
 
@@ -90,10 +109,11 @@ module.exports = function ({ models, api }) {
         if (typeof defaults != 'object' && !Array.isArray(defaults)) throw global.getText("users", "needObject");
         try {
             await Users.findOrCreate({ where: { userID }, defaults });
+            console.log(`createData: Created data for user ID ${userID}`);
             return true;
         } catch (error) {
-            console.error(error);
-            throw new Error(error);
+            console.error(`createData: Error creating data for user ID ${userID}`, error);
+            throw error;
         }
     }
 
