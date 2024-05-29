@@ -7,7 +7,7 @@ module.exports.config = {
   credits: originalCredit,
   description: "Pairing",
   commandCategory: "Love",
-  usePrefix: true,
+  usePrefix: false,
   usages: "pair", 
   cooldowns: 5
 };
