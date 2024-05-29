@@ -8,19 +8,24 @@ module.exports = function ({ models, api }) {
     async function getNameUser(id) {
         try {
             if (global.data.userName.has(id)) {
+                console.log(`Found in global data: ${id}`);
                 return global.data.userName.get(id);
             } else if (global.data.allUserID.includes(id)) {
+                console.log(`Fetching from database: ${id}`);
                 const userData = await this.getData(id);
                 if (userData && userData.name) {
+                    global.data.userName.set(id, userData.name);  // Optionally update global data
                     return userData.name;
                 } else {
+                    console.log(`Name not found in database: ${id}`);
                     return "Facebook User";
                 }
             } else {
+                console.log(`User ID not found globally: ${id}`);
                 return "Facebook User";
             }
         } catch (error) {
-            console.error(error);
+            console.error(`Error fetching name for ID ${id}:`, error);
             return "Facebook User";
         }
     }
@@ -102,3 +107,25 @@ module.exports = function ({ models, api }) {
         createData
     };
 };
+
+// Example of initializing global data (this part should be in your application startup code)
+global.data = {
+    userName: new Map(),
+    allUserID: []
+};
+
+// Example function to populate global data from the database
+async function populateGlobalData() {
+    const users = await Users.findAll();
+    users.forEach(user => {
+        global.data.userName.set(user.userID, user.name);
+        global.data.allUserID.push(user.userID);
+    });
+}
+
+// Call this function at the startup of your application
+populateGlobalData().then(() => {
+    console.log('Global data initialized');
+}).catch(error => {
+    console.error('Error initializing global data:', error);
+});
