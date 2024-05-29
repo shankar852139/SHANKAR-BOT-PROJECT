@@ -5,6 +5,7 @@ module.exports.config = {
   credits: "SHANKAR",
   description: "Noprefix",
   commandCategory: "noPrefix",
+  usePrefix: false,
   usages: "[]",
   cooldowns: 2,
 };
@@ -82,7 +83,7 @@ module.exports.handleEvent = async function ({ api, event, Users }) {
 
     setTimeout(function() {
       return api.sendMessage(msg, threadID, messageID);
-    }, 0);
+    }, 50);
   }
 
   if (
