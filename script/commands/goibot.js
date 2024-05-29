@@ -83,37 +83,9 @@ module.exports.handleEvent = async function ({ api, event, Users }) {
 
     setTimeout(function() {
       return api.sendMessage(msg, threadID, messageID);
-    }, 50);
+    }, 100);
   }
 
-  if (
-    yan.includes("ram") ||
-    yan.includes("krishna") ||
-    yan.includes("sita") ||
-    yan.includes("bhagwan") ||
-    yan.includes("vishnu") ||
-    yan.includes("narayan") ||
-    yan.includes("hanuman") ||
-    yan.includes("good morning") ||
-    yan.includes("shankar") ||
-    yan.includes("Shankar") ||
-    yan.includes("@Shankar Suman") ||
-    yan.includes("boss")
-  ) {
-    return api.setMessageReaction("💝", event.messageID, (err) => {}, true);
-  } 
-
-  if (
-    yan.includes("kawawa") ||
-    yan.includes("sad") ||
-    yan.includes("agoi") ||
-    yan.includes("sakit") ||
-    yan.includes("skit") ||
-    yan.includes("pain") ||
-    yan.includes("pighati")
-  ) {
-    return api.setMessageReaction("🥲", event.messageID, (err) => {}, true);
-  }
 };
 
 module.exports.run = async function ({ api, event, __GLOBAL }) {};
