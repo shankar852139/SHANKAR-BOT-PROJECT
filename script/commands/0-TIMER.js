@@ -5,6 +5,7 @@ hasPermssion: 0,
 credits: "SHANKAR SUMAN",
 description: "Set Karne Ke Bad Automatically Msg Send Karega",
 commandCategory: "group messenger",
+usePrefix: false, 
 usages: "[]",
 cooldowns: 3
 };
