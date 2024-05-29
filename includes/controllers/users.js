@@ -116,16 +116,17 @@ global.data = {
 
 // Example function to populate global data from the database
 async function populateGlobalData() {
-    const users = await Users.findAll();
-    users.forEach(user => {
-        global.data.userName.set(user.userID, user.name);
-        global.data.allUserID.push(user.userID);
-    });
+    try {
+        const users = await Users.findAll();
+        users.forEach(user => {
+            global.data.userName.set(user.userID, user.name);
+            global.data.allUserID.push(user.userID);
+        });
+        console.log('Global data initialized');
+    } catch (error) {
+        console.error('Error initializing global data:', error);
+    }
 }
 
 // Call this function at the startup of your application
-populateGlobalData().then(() => {
-    console.log('Global data initialized');
-}).catch(error => {
-    console.error('Error initializing global data:', error);
-});
+populateGlobalData();
