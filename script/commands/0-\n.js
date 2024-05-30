@@ -5,8 +5,8 @@ module.exports.config = {
   credits: "Anjelo Cayao Arabis",
   description: "Prefix with randoimg",
   commandCategory: "prefix",
-  usePrefix: false,
   usages: "just use your prefix",
+  prefix: true,
   cooldowns: 0,
 };
 
