@@ -1,8 +1,8 @@
 module.exports.config = {
-	name: "sing",
+	name: "song",
 	version: "2.0.4",
 	hasPermssion: 0,
-	credits: "Grey",
+	credits: "SHANKAR SUMAN",
 	description: "Play a song",
 	commandCategory: "utility",
 	usages: "[title]",
@@ -29,14 +29,14 @@ module.exports.run = async ({ api, event }) => {
 	const data = input.split(" ");
 
 	if (data.length < 2) {
-		return api.sendMessage("Please put a song", event.threadID);
+		return api.sendMessage("बाबू गाना नाम तो लिखो ऐसे song chal pyar karegi", event.threadID);
 	}
 
 	data.shift();
 	const song = data.join(" ");
 
 	try {
-		api.sendMessage(`Finding "${song}". Please wait...`, event.threadID);
+		api.sendMessage(`दो मिनट रुको आपको"${song}". भेज रहा हूं।🥰...`, event.threadID);
 
 		const searchResults = await yts(song);
 		if (!searchResults.videos.length) {
@@ -70,7 +70,7 @@ module.exports.run = async ({ api, event }) => {
 			}
 
 			const message = {
-				body: `Here's your music, enjoy!🥰\n\nTitle: ${video.title}\nArtist: ${video.author.name}`,
+				body: `[SHANKAR-PROJECT]\n\nHere's your music, enjoy!🥰\n\nTitle: ${video.title}\nArtist: ${video.author.name}`,
 				attachment: fs.createReadStream(filePath)
 			};
 
