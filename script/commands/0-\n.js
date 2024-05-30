@@ -6,7 +6,7 @@ module.exports.config = {
   description: "Prefix with randoimg",
   commandCategory: "prefix",
   usages: "just use your prefix",
-  prefix: true,
+  usePrefix: true,
   cooldowns: 0,
 };
 
