@@ -4,6 +4,7 @@ module.exports.config = {
   hasPermssion: 0,
   credits: "Khoa",
   description: "pair",
+  usePrefix: false,
   commandCategory: "group",
   usages: "",
   dependencies: {
