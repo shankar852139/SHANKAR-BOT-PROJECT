@@ -5,8 +5,8 @@ module.exports.config = {
     credits: "Prince Sanel",
     description: "Get your profile pic.",
     commandCategory: "Random",
-    usePrefix: false,
     usages: "noprefix",
+    prefix: false,
     cooldowns: 3,
 };
 module.exports.run = async({ api, event, args }) => {
