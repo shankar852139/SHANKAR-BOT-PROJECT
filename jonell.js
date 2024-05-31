@@ -37,7 +37,7 @@ const {
 const { join, resolve } = require("path");
 const { execSync } = require("child_process");
 const logger = require("./utils/log.js");
-const login = require("facebook-chat-api");
+const login = require("fca-project-orion");
 //const login = require("helyt");
 //const login = require("fca-noder");
 //const login = require('fca-sus');
@@ -1126,7 +1126,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1146,7 +1146,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1166,7 +1166,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1186,7 +1186,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1206,7 +1206,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1226,7 +1226,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1243,7 +1243,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1263,7 +1263,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1280,7 +1280,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     cron.schedule(
@@ -1300,7 +1300,7 @@ function onBot({ models: botModel }) {
       },
       {
         scheduled: true,
-        timezone: "Asia/Kolkata",
+        timezone: "Asia/Manila",
       },
     );
     // setInterval(async function () {
