@@ -19,15 +19,15 @@
     "discord-image-generation": "^1.4.25",
     "discord.js": "^14.14.1",
     "express": "^4.18.2",
-    "fca-project-orion": "^1.1.17", // Only one FCA package
+    "fca-project-orion": "^1.1.17",
     "form-data": "^4.0.0",
-    "fs-extra": "^10.0.0", // Removed 'fs'
+    "fs-extra": "^10.0.0",
     "google": "^2.1.0",
     "googleapis": "^128.0.0",
     "googlethis": "^1.8.0",
     "image-downloader": "^4.3.0",
     "jim": "^0.0.2",
-    "jimp": "^0.16.1", // Added version
+    "jimp": "^0.16.1",
     "moment-timezone": "^0.5.43",
     "node-cron": "^3.0.3",
     "node-superfetch": "^0.3.3",
